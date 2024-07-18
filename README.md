@@ -24,11 +24,11 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 # Instalation
 
 1. donwload terlebih dahulu filenya
-   $ git clone https://github.com/mallawatech/daily-activity.git
+   * $ git clone https://github.com/mallawatech/daily-activity.git
 2. masuk ke direktori daily-activity
-   $ cd daily-activity
+   * $ cd daily-activity
 3. jika mengunakan visual studio code tuliskan perintah di bawah
-   $ code .
+   * $ code .
 4. dhdrythdfghd
 5. dgdfgdfh
 7. dfghdfghdfg
