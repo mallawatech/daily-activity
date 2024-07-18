@@ -29,11 +29,21 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
    * $ cd daily-activity
 3. jika mengunakan visual studio code tuliskan perintah di bawah
    * $ code .
-4. dhdrythdfghd
-5. dgdfgdfh
-7. dfghdfghdfg
-8. dfghdfghdf
-9. fdghdfgh
+4. copy file .env.example menjadi .env
+   * $ cp .env.example .env
+5. edit file .env
+   - DB_CONNECTION=mysql
+   - DB_HOST=127.0.0.1
+   - DB_PORT=3306
+   - DB_DATABASE=daily-report
+   - DB_USERNAME=root
+   - DB_PASSWORD= 
+7. Key Geneste
+   * $ php artisan key:generate
+8. Migrate Database
+   * $ php artisan migrate
+9. jalankan server
+   * $ php artisan serv
 
 
 
