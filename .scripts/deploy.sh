@@ -6,7 +6,7 @@ echo "Deployment started ..."
 # Enter maintenance mode or return true
 # if already is in maintenance mode
 (php artisan down) || true
-
+npm run build
 # Install composer dependencies
 git reset --hard HEAD
 git pull origin main --no-ff
