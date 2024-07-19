@@ -15,10 +15,10 @@ jobs:
       - name: Run SSH commands
         uses: appleboy/ssh-action@master
         with:
-          host: ${{ secrets.PROD_HOST }}
+          host: ${{ secrets.SERVER_HOST }}
           username: ${{ secrets.SERVER_USER }}
           key: ${{ secrets.SSH_PRIVATE_KEY }}
-          port: ${{ secrets.SERVER_HOST }}
+          port: ${{ secrets.SERVER_PORT }}
           script: |
             cd /var/www/daily-activity
             git reset --hard HEAD
