@@ -27,7 +27,10 @@ class Report extends Model
     {
         return $this->belongsTo(User::class, 'user_id');
     }
-
+    public function dataovertime()
+    {
+        return $this->belongsTo(Overtime::class,'id', 'report_id');
+    }
     public function photos()
     {
         return $this->hasMany(Photo::class);

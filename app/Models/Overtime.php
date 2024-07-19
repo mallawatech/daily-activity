@@ -10,7 +10,7 @@ class Overtime extends Model
     use HasFactory;
 
     protected $fillable = [
-        'date', 'day', 'start_time', 'end_time', 'total_overtime', 'activity_log', 'photos'
+        'report_id','date', 'day', 'start_time', 'end_time', 'total_overtime', 'activity_log', 'photos'
     ];
 
     protected $casts = [
