@@ -25,6 +25,7 @@ class OvertimeController extends Controller
     {
         // Validasi input
         $request->validate([
+            'report_id' => 'required',
             'date' => 'required|date',
             'start_time' => 'required|date_format:H:i',
             'end_time' => 'required|date_format:H:i',
@@ -81,7 +82,7 @@ class OvertimeController extends Controller
         $overtime->end_time = $request->end_time;
         $overtime->activity_log = $request->activity_log;
         $overtime->total_overtime = $totalOvertime; // Mengisi total overtime
-        $overtime->report_id = null;
+        $overtime->report_id = $request->report_id;
 
         // Jika ada foto yang diunggah, simpan foto-foto tersebut
         if ($request->has('photos')) {
