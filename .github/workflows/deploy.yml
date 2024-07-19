@@ -19,7 +19,7 @@ jobs:
           user: ${{ secrets.SERVER_USER }}
           pass: ${{ secrets.SSH_PRIVATE_KEY }}
           port: ${{ secrets.SERVER_PORT }}
-          script: |
+          command: |
             cd /var/www/daily-activity
             git reset --hard HEAD
             git pull origin main --no-ff
