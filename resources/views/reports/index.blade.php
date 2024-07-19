@@ -18,7 +18,7 @@
                 @if($reports->isEmpty())
                     <p>Silahkan Upload Data Anda Terlebi Dahulu</p>
                 @else
-                    <table class="table table-bordered">
+                    <table class="table-responsive" style="overflow-x: auto;">
                         <thead>
                             <tr>
                                 <th class="text-center">Date</th>
