@@ -1,33 +1,27 @@
-name: Deploy to Production
+name: Deploy
 
+# Trigger the workflow on push and
+# pull request events on the production branch
 on:
   push:
     branches:
-      - main
+      - production
+  pull_request:
+    branches:
+      - production
 
+# Authenticate to the the server via ssh
+# and run our deployment script
 jobs:
-  ssh:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
-      - name: Run SSH commands
-        uses: fifsky/ssh-action@master
+      - uses: actions/checkout@v2
+      - name: Deploy to server
+        uses: appleboy/ssh-action@master
         with:
           host: ${{ secrets.SERVER_HOST }}
-          user: ${{ secrets.SERVER_USER }}
-          pass: ${{ secrets.SSH_PRIVATE_KEY }}
+          username: ${{ secrets.SERVER_USER }}
           port: ${{ secrets.SERVER_PORT }}
-          command: |
-            cd /var/www/daily-activity
-            git reset --hard HEAD
-            git pull origin main --no-ff
-            composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
-            composer dump-autoload
-            php artisan cache:clear
-            php artisan config:cache
-            php artisan config:clear
-            php artisan route:cache
-            php artisan view:cache
-            php artisan storage:link
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          script: "cd /var/www/daily-activity && bash .scripts/deploy.sh"
