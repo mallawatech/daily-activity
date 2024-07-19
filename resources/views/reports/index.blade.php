@@ -43,9 +43,18 @@
                                         @endforeach
                                     </td>
                                     <td class="text-center">
-                                        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#createOvertimeModal-{{ $report->id }}">
-                                            <i class="fas fa-solid fa-plus"></i>
-                                        </button>
+                                        <?php   
+                                          if ($report->dataovertime) {
+                                               echo $report->dataovertime->total_overtime;
+                                          }else{
+                                            ?>
+                                                <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#createOvertimeModal-{{ $report->id }}">
+                                                    <i class="fas fa-solid fa-plus"></i>
+                                                </button>
+                                            <?php
+                                          }
+                                        ?>
+                                       
                                       
                                     </td>
 
