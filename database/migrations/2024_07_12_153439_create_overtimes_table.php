@@ -16,7 +16,7 @@ class CreateOvertimesTable extends Migration
         Schema::create('overtimes', function (Blueprint $table) {
             $table->id();
             $table->bigInteger('user_id')->unsigned();
-            $table->bigInteger('report_id')->unsigned(); // Pastikan kolom ini ada
+            $table->bigInteger('report_id')->nullable(); // Pastikan kolom ini ada
             $table->date('date');
             $table->string('day');
             $table->time('start_time');
