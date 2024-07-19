@@ -1,4 +1,4 @@
-name: Deploy Laravel
+name: Deploy Laravel Application
 
 on:
   push:
@@ -10,16 +10,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Checkout Code
+      - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up PHP
-        uses: shivammathur/setup-php@v2
+      - name: Set up SSH
+        uses: webfactory/ssh-agent@v0.5.3
         with:
-          php-version: 8.3
-
-      - name: Install Dependencies
-        run: composer install --no-progress --no-suggest --prefer-dist --optimize-autoloader
+          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
 
       - name: Deploy to Server
         env:
@@ -29,5 +26,22 @@ jobs:
         run: |
           echo "$PRIVATE_KEY" > private_key
           chmod 600 private_key
-          rsync -avr -e "ssh -i private_key -o StrictHostKeyChecking=no" . $USER@$HOST:/var/www/daily-activity
-          ssh -i private_key -o StrictHostKeyChecking=no $USER@$HOST "cd /var/www/daily-activity && composer install && php artisan migrate --force"
+          rsync -avz --exclude='node_modules' --exclude='.git' -e "ssh -i private_key -o StrictHostKeyChecking=no" ./ $USER@$HOST:/var/www/daily-activity
+
+      - name: Install dependencies
+        env:
+          HOST: ${{ secrets.SERVER_HOST }}
+          USER: ${{ secrets.SERVER_USER }}
+        run: |
+          ssh -i private_key $USER@$HOST -o StrictHostKeyChecking=no << 'EOF'
+            cd /var/www/daily-activity
+            composer install --no-interaction --prefer-dist --optimize-autoloader
+            npm install
+            npm run production
+            php artisan migrate --force
+            php artisan cache:clear
+            php artisan config:clear
+            php artisan route:clear
+            php artisan view:clear
+            php artisan optimize
+          EOF
