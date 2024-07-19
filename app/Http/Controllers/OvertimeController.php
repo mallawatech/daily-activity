@@ -31,7 +31,7 @@ class OvertimeController extends Controller
             'end_time' => 'required|date_format:H:i',
             'activity_log' => 'required|string',
             'photos' => 'nullable|array|min:1|max:10',
-            'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photos.*' => 'image|mimes:jpeg,png,jpg',
         ]);
 
         // Parsing waktu mulai dan waktu selesai
@@ -125,7 +125,7 @@ class OvertimeController extends Controller
                 'end_time' => 'required',
                 'activity_log' => 'required|string',
                 'photos' => 'nullable|array|min:1|max:10',
-                'photos.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+                'photos.*' => 'image|mimes:jpeg,png,jpg',
             ]);
 
              $start = Carbon::parse($request->date . ' ' . $request->start_time);
