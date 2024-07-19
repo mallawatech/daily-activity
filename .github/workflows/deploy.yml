@@ -1,4 +1,4 @@
-name: Deploy Laravel Application
+name: Deploy to Production
 
 on:
   push:
@@ -6,42 +6,28 @@ on:
       - main
 
 jobs:
-  deploy:
+  ssh:
     runs-on: ubuntu-latest
-
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
 
-      - name: Set up SSH
-        uses: webfactory/ssh-agent@v0.5.3
+      - name: Run SSH commands
+        uses: appleboy/ssh-action@master
         with:
-          ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
-
-      - name: Deploy to Server
-        env:
-          PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          HOST: ${{ secrets.SERVER_HOST }}
-          USER: ${{ secrets.SERVER_USER }}
-        run: |
-          echo "$PRIVATE_KEY" > private_key
-          chmod 600 private_key
-          rsync -avz --exclude='node_modules' --exclude='.git' -e "ssh -i private_key -o StrictHostKeyChecking=no" ./ $USER@$HOST:/var/www/daily-activity
-
-      - name: Install dependencies
-        env:
-          HOST: ${{ secrets.SERVER_HOST }}
-          USER: ${{ secrets.SERVER_USER }}
-        run: |
-          ssh -i private_key $USER@$HOST -o StrictHostKeyChecking=no << 'EOF'
+          host: ${{ secrets.PROD_HOST }}
+          username: ${{ secrets.SERVER_USER }}
+          key: ${{ secrets.SSH_PRIVATE_KEY }}
+          port: ${{ secrets.SERVER_HOST }}
+          script: |
             cd /var/www/daily-activity
-            composer install --no-interaction --prefer-dist --optimize-autoloader
-            npm install
-            npm run production
-            php artisan migrate --force
+            git reset --hard HEAD
+            git pull origin main --no-ff
+            composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+            composer dump-autoload
             php artisan cache:clear
+            php artisan config:cache
             php artisan config:clear
-            php artisan route:clear
-            php artisan view:clear
-            php artisan optimize
-          EOF
+            php artisan route:cache
+            php artisan view:cache
+            php artisan storage:link
