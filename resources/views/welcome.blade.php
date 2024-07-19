@@ -74,7 +74,7 @@
 
     <div class="content">
         <div class="title m-b-md">
-            <img src="{{ asset('img-logo/LOGO.png') }}" alt="Logo" class="landing-image">
+            <img src="{{ asset('img-logo/Logo.png') }}" alt="Logo" class="landing-image">
         </div>
         <div class="subtitle" >
            <h1>Aplikasi Untuk Laporan Harian</h1>
