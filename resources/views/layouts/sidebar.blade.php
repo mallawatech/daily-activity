@@ -50,7 +50,6 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Data Report:</h6>
                         <a class="collapse-item" href="{{ route('reports.index') }}">All Report</a>
-                        <a class="collapse-item" data-toggle="modal" data-target="#createReportModal">Create Report</a>
                     </div>
                 </div>
             </li>
@@ -66,7 +65,6 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Data Overtime:</h6>
                 <a class="collapse-item" href="{{ route('overtimes.index') }}">All Overtime</a>
-                <a class="collapse-item" data-toggle="modal" data-target="#createOvertimeModal">Create Overtime</a>
                 {{-- <a class="collapse-item" href="#">Animations</a> --}}
                 {{-- <a class="collapse-item" href="#">Other</a> --}}
             </div>

@@ -16,9 +16,6 @@
                 <h4>Overtime</h4>
             </div>
         <div class="card-body">
-                <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#createOvertimeModal">
-                    <i class="fas fa-solid fa-plus"></i>
-                </button>
                 @if($overtimes->isEmpty())
             <p>You have not submitted any overtime yet.</p>
         @else
@@ -55,7 +52,7 @@
                                         <div class="row">
                                             @foreach($photos as $photo)
                                                 <div class="col-md-3 mb-3">
-                                                    <img src="{{ asset('storage/' . $photo) }}" alt="Photo" class="img-thumbnail" width="100" height="100">
+                                                    <img src="{{ asset('storage/' . $photo) }}" alt="Photo" width="100" height="100">
                                                 </div>
                                             @endforeach
                                         </div>
