@@ -22,10 +22,10 @@ class CreateOvertimesTable extends Migration
             $table->time('start_time');
             $table->time('end_time');
             $table->text('activity_log');
-            $table->integer('total_overtime', 8, 2);
+            $table->decimal('total_overtime', 8, 2); // Ubah tipe data menjadi decimal
             $table->json('photos')->nullable();
             $table->timestamps();
-
+        
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('report_id')->references('id')->on('reports')->onDelete('cascade');
         });
