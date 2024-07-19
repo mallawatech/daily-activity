@@ -81,6 +81,7 @@ class OvertimeController extends Controller
         $overtime->end_time = $request->end_time;
         $overtime->activity_log = $request->activity_log;
         $overtime->total_overtime = $totalOvertime; // Mengisi total overtime
+        $overtime->report_id = null;
 
         // Jika ada foto yang diunggah, simpan foto-foto tersebut
         if ($request->has('photos')) {
