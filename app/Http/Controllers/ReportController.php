@@ -27,7 +27,7 @@ class ReportController extends Controller
             'start_time' => 'required',
             'end_time' => 'required',
             'activity_log' => 'required',
-            'photo.*' => 'image|mimes:jpeg,png,jpg,gif|max:2048',
+            'photo.*' => 'image|mimes:jpeg,png,jpg',
         ]);
 
         // Mendapatkan user yang sedang login
@@ -85,7 +85,7 @@ class ReportController extends Controller
             'end_time' => 'required',
             'activity_log' => 'required|string',
             'photo' => 'nullable|array',
-            'photo.*' => 'nullable|image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            'photo.*' => 'nullable|image|mimes:jpeg,png,jpg',
         ]);
 
         $report = Report::findOrFail($id);
