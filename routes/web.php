@@ -29,7 +29,7 @@ Route::post('/logout-other-browser-sessions', function (Request $request) {
     return back()->with('status', 'Other browser sessions logged out.');
 })->name('other-browser-sessions.logout');
 
-// Route::middleware(['auth:sanctum', 'verified'])->get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+
 
 // Route::get('/reports', [ReportController::class, 'index'])->name('reports.index');
 // Route::middleware(['auth:sanctum', 'verified'])->get('/reports/create', [ReportController::class, 'create'])->name('reports.create');
@@ -72,7 +72,7 @@ Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('a
 
 //route profile
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
-Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+//Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
 Route::post('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
 
 
