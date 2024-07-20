@@ -231,9 +231,9 @@
                             <td>{{ $overtime->total_overtime }} Jam</td>
                             <td>{{ $overtime->activity_log }}</td>
                             <td class="text-center">
-                                @if($report->photo)
+                                @if($overtime->photo)
                                     @php
-                                        $photos = is_string($report->photo) ? json_decode($report->photo, true) : $report->photo;
+                                        $photos = is_string($overtime->photo) ? json_decode($overtime->photo, true) : $overtime->photo;
                                     @endphp
                                     @if(is_array($photos) && count($photos) > 0)
                                         <img src="{{ asset('storage/' . $photos[0]) }}" alt="photo" width="50" height="50">
