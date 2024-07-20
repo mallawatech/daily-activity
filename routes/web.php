@@ -71,9 +71,10 @@ Route::get('/dashboard/admin.overime', [DashboardController::class, 'pdfOvertime
 Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('admin.search');
 
 //route profile
-Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
-//Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
-Route::post('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
+Route::middleware('auth')->group(function () {
+    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+    Route::put('/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
 
 
 
