@@ -286,9 +286,9 @@
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <p><strong>Photos:</strong></p>
-                                                        @if($report->photo)
+                                                        @if($overtime->photo)
                                                             @php
-                                                                $photos = is_string($report->photo) ? json_decode($report->photo, true) : $report->photo;
+                                                                $photos = is_string($overtime->photo) ? json_decode($overtime->photo, true) : $overtime->photo;
                                                             @endphp
                                                             @if(is_array($photos) && count($photos) > 0)
                                                                 <div class="row">
@@ -305,9 +305,9 @@
                                                             <p>No photos</p>
                                                         @endif
                                                     </div>
-                                                    
                                                 </div>
                                             </div>
+                                            
                                         </div>
                                     </div>
                                     <div class="modal-footer">
