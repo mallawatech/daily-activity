@@ -72,7 +72,7 @@ Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('a
 
 //route profile
 Route::middleware('auth')->group(function () {
-    Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+   // Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
     Route::put('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
 });
 
