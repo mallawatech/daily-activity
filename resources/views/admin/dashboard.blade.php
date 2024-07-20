@@ -231,19 +231,19 @@
                             <td>{{ $overtime->total_overtime }} Jam</td>
                             <td>{{ $overtime->activity_log }}</td>
                             <td class="text-center">
-                                @if(isset($overtime->photos) && !empty($overtime->photos))
+                                @if($report->photo)
                                     @php
-                                        $photos = json_decode($overtime->photos, true);
+                                        $photos = is_string($report->photo) ? json_decode($report->photo, true) : $report->photo;
                                     @endphp
                                     @if(is_array($photos) && count($photos) > 0)
-                                        <img src="{{ asset('storage/' . $photos[0]) }}" alt="photo" width="100" height="100">
+                                        <img src="{{ asset('storage/' . $photos[0]) }}" alt="photo" width="50" height="50">
                                     @else
-                                        <p>No photos available</p>
+                                        No photo
                                     @endif
                                 @else
-                                    <p>No photos uploaded</p>
+                                    No photo
                                 @endif
-                            </td>
+                            </td>                            
                             <td class="text-center">
                                 <button type="button" class="btn-circle btn-info btn-sm" data-toggle="modal" data-target="#viewOvertimeModal{{ $overtime->id }}">
                                     <i class="fas fa-info"></i>
@@ -286,25 +286,26 @@
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <p><strong>Photos:</strong></p>
-                                                        @if(isset($overtime->photos) && !empty($overtime->photos))
+                                                        @if($report->photo)
                                                             @php
-                                                                $photos = json_decode($overtime->photos, true);
+                                                                $photos = is_string($report->photo) ? json_decode($report->photo, true) : $report->photo;
                                                             @endphp
                                                             @if(is_array($photos) && count($photos) > 0)
                                                                 <div class="row">
                                                                     @foreach($photos as $photo)
                                                                         <div class="col-md-4 mb-3">
-                                                                            <img src="{{ asset('storage/' . $photo) }}" alt="photo" class="img-fluid">
+                                                                            <img src="{{ asset('storage/' . $photo) }}" alt="photo" class="img-fluid rounded">
                                                                         </div>
                                                                     @endforeach
                                                                 </div>
                                                             @else
-                                                                <p>No photos available</p>
+                                                                <p>No photos</p>
                                                             @endif
                                                         @else
-                                                            <p>No photos uploaded</p>
+                                                            <p>No photos</p>
                                                         @endif
                                                     </div>
+                                                    
                                                 </div>
                                             </div>
                                         </div>
