@@ -204,7 +204,9 @@
             <h6 class="m-0 font-weight-bold text-primary">All Overtimes</h6>
         </div>
         <div class="card-body">
-            <a href="{{ route('admin.overtime') }}" class="btn btn-primary" id="downloadPdfBtn"><i class="fas fa-solid fa-file-pdf"></i></a>
+            <a href="{{ route('admin.overtime') }}" class="btn btn-primary" id="downloadPdfBtn">
+                <i class="fas fa-solid fa-file-pdf"></i>
+            </a>
             <div class="table-responsive mt-2" style="overflow-x: auto;">
                 <table class="table table-bordered" id="dataTableOvertimes" width="100%" cellspacing="0">
                     <thead>
@@ -231,9 +233,9 @@
                             <td>{{ $overtime->total_overtime }} Jam</td>
                             <td>{{ $overtime->activity_log }}</td>
                             <td class="text-center">
-                                @if($overtime->photo)
+                                @if($overtime->photos)
                                     @php
-                                        $photos = is_string($overtime->photo) ? json_decode($overtime->photo, true) : $overtime->photo;
+                                        $photos = is_string($overtime->photos) ? json_decode($overtime->photos, true) : $overtime->photos;
                                     @endphp
                                     @if(is_array($photos) && count($photos) > 0)
                                         <img src="{{ asset('storage/' . $photos[0]) }}" alt="photo" width="50" height="50">
@@ -243,16 +245,17 @@
                                 @else
                                     No photo
                                 @endif
-                            </td>                            
+                            </td>
                             <td class="text-center">
                                 <button type="button" class="btn-circle btn-info btn-sm" data-toggle="modal" data-target="#viewOvertimeModal{{ $overtime->id }}">
                                     <i class="fas fa-info"></i>
                                 </button>
-                                {{-- <a href="{{ route('overtimes.edit', $overtime->id) }}" class="btn btn-warning btn-sm"><i class="fas fa-edit"></i></a> --}}
                                 <form action="{{ route('overtimes.destroy', $overtime->id) }}" method="POST" style="display:inline;">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn-circle btn-danger btn-sm"><i class="fas fa-trash"></i></button>
+                                    <button type="submit" class="btn-circle btn-danger btn-sm">
+                                        <i class="fas fa-trash"></i>
+                                    </button>
                                 </form>
                             </td>
                         </tr>
@@ -286,9 +289,9 @@
                                                 <div class="card">
                                                     <div class="card-body">
                                                         <p><strong>Photos:</strong></p>
-                                                        @if($overtime->photo)
+                                                        @if($overtime->photos)
                                                             @php
-                                                                $photos = is_string($overtime->photo) ? json_decode($overtime->photo, true) : $overtime->photo;
+                                                                $photos = is_string($overtime->photos) ? json_decode($overtime->photos, true) : $overtime->photos;
                                                             @endphp
                                                             @if(is_array($photos) && count($photos) > 0)
                                                                 <div class="row">
@@ -307,7 +310,6 @@
                                                     </div>
                                                 </div>
                                             </div>
-                                            
                                         </div>
                                     </div>
                                     <div class="modal-footer">
@@ -322,6 +324,7 @@
             </div>
         </div>
     </div>
+    
     <!-- End Tabel Overtimes -->
     
     
