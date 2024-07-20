@@ -7,7 +7,6 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use App\Models\User;
 
-
 class ProfileController extends Controller
 {
     public function show()
@@ -28,7 +27,7 @@ class ProfileController extends Controller
         ]);
     
         // Ambil data pengguna yang sedang login
-        $user = Auth::user(); // Pastikan ini mengembalikan objek User
+        $user = Auth::user();
     
         // Perbarui data pengguna
         $user->name = $request->name;
@@ -37,12 +36,7 @@ class ProfileController extends Controller
         $user->kode_eos = $request->kode_eos;
     
         // Simpan perubahan
-        if (method_exists($user, 'save')) {
-            $user->save();
-        } else {
-            // Ini akan menunjukkan jika metode save() tidak tersedia
-            throw new \Exception('Method save() does not exist on the user object.');
-        }
+        $user->save();
     
         // Redirect kembali ke halaman profile dengan pesan sukses
         return redirect()->route('profile.show')->with('success', 'Profile updated successfully.');
@@ -56,24 +50,15 @@ class ProfileController extends Controller
         ]);
     
         // Ambil data pengguna yang sedang login
-        $user = Auth::user(); // Pastikan ini mengembalikan objek User
+        $user = Auth::user();
     
         // Perbarui password pengguna
         $user->password = Hash::make($request->password);
     
         // Simpan perubahan
-        if (method_exists($user, 'save')) {
-            $user->save();
-        } else {
-            // Ini akan menunjukkan jika metode save() tidak tersedia
-            throw new \Exception('Method save() does not exist on the user object.');
-        }
+        $user->save();
     
         // Redirect kembali ke halaman profile dengan pesan sukses
         return redirect()->route('profile.show')->with('success', 'Password updated successfully.');
     }
-    
-
 }
-
-

@@ -72,8 +72,8 @@ Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('a
 
 //route profile
 Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
-Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
-Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
+Route::post('/profile', [ProfileController::class, 'update'])->name('profile.update');
+Route::post('/profile/password', [ProfileController::class, 'updatePassword'])->name('profile.updatePassword');
 
 
 
