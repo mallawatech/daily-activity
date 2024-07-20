@@ -2,112 +2,155 @@
 
 @section('content')
 <div class="container-fluid">
-    <!-- Page Heading -->
     <h1 class="h3 mb-4 text-gray-800">Profile</h1>
 
+    @if(session('success'))
+        <div class="alert alert-success">
+            {{ session('success') }}
+        </div>
+    @endif
+
     <div class="row">
-        <div class="col-lg-8">
-            <!-- Update Profile Information -->
-            @if (Laravel\Fortify\Features::canUpdateProfileInformation())
-                <form method="POST" action="{{ route('user-profile-information.update') }}">
-                    @csrf
-                    @method('PUT')
+        <!-- Kolom 1: Informasi Profil -->
+        <div class="col-lg-6">
+            <table class="table table-borderless">
+                <tr>
+                    <th>Name</th>
+                    <td>{{ $user->name }}</td>
+                </tr>
+                <tr>
+                    <th>Email</th>
+                    <td>{{ $user->email }}</td>
+                </tr>
+                <tr>
+                    <th>Satker</th>
+                    <td>{{ $user->satker }}</td>
+                </tr>
+                <tr>
+                    <th>Kode EOS</th>
+                    <td>{{ $user->kode_eos }}</td>
+                </tr>
+            </table>
 
-                    <div class="form-group">
-                        <label for="name">Name</label>
-                        <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', Auth::user()->name) }}" required autofocus>
-                        @error('name')
-                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                        @enderror
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editProfileModal">
+                Edit Profile
+            </button>
+
+            <!-- Modal Edit Profile -->
+            <<div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="{{ route('profile.update') }}">
+                                @csrf
+                                @method('POST')
+            
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $user->name) }}" required>
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+            
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" required>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+            
+                                <div class="form-group">
+                                    <label for="satker">Satker</label>
+                                    <input id="satker" type="text" class="form-control @error('satker') is-invalid @enderror" name="satker" value="{{ old('satker', $user->satker) }}">
+                                    @error('satker')
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+            
+                                <div class="form-group">
+                                    <label for="kode_eos">Kode EOS</label>
+                                    <input id="kode_eos" type="text" class="form-control @error('kode_eos') is-invalid @enderror" name="kode_eos" value="{{ old('kode_eos', $user->kode_eos) }}">
+                                    @error('kode_eos')
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+            
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </form>
+                        </div>
                     </div>
+                </div>
+            </div>
+        </div>
 
-                    <div class="form-group">
-                        <label for="email">Email</label>
-                        <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', Auth::user()->email) }}" required>
-                        @error('email')
-                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                        @enderror
+        <!-- Kolom 2: Update Password -->
+        <div class="col-lg-6">
+            <h3>Update Password</h3>
+            <button type="button" class="btn btn-warning" data-toggle="modal" data-target="#updatePasswordModal">
+                Update Password
+            </button>
+
+            <!-- Modal Update Password -->
+            <div class="modal fade" id="editProfileModal" tabindex="-1" role="dialog" aria-labelledby="editProfileModalLabel" aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="editProfileModalLabel">Edit Profile</h5>
+                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">&times;</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">
+                            <form method="POST" action="{{ route('profile.update') }}">
+                                @csrf
+                                @method('POST')
+            
+                                <div class="form-group">
+                                    <label for="name">Name</label>
+                                    <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name', $user->name) }}" required>
+                                    @error('name')
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+            
+                                <div class="form-group">
+                                    <label for="email">Email</label>
+                                    <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email', $user->email) }}" required>
+                                    @error('email')
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+            
+                                <div class="form-group">
+                                    <label for="satker">Satker</label>
+                                    <input id="satker" type="text" class="form-control @error('satker') is-invalid @enderror" name="satker" value="{{ old('satker', $user->satker) }}">
+                                    @error('satker')
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+            
+                                <div class="form-group">
+                                    <label for="kode_eos">Kode EOS</label>
+                                    <input id="kode_eos" type="text" class="form-control @error('kode_eos') is-invalid @enderror" name="kode_eos" value="{{ old('kode_eos', $user->kode_eos) }}">
+                                    @error('kode_eos')
+                                        <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
+                                    @enderror
+                                </div>
+            
+                                <button type="submit" class="btn btn-primary">Save</button>
+                            </form>
+                        </div>
                     </div>
-
-                    <button type="submit" class="btn btn-primary">Save</button>
-                </form>
-
-                <hr class="my-4">
-            @endif
-
-            <!-- Update Password -->
-            @if (Laravel\Fortify\Features::enabled(Laravel\Fortify\Features::updatePasswords()))
-                <form method="POST" action="{{ route('user-password.update') }}">
-                    @csrf
-                    @method('PUT')
-
-                    <div class="form-group">
-                        <label for="current_password">Current Password</label>
-                        <input id="current_password" type="password" class="form-control @error('current_password') is-invalid @enderror" name="current_password" required>
-                        @error('current_password')
-                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password">New Password</label>
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
-                        @error('password')
-                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                        @enderror
-                    </div>
-
-                    <div class="form-group">
-                        <label for="password_confirmation">Confirm New Password</label>
-                        <input id="password_confirmation" type="password" class="form-control" name="password_confirmation" required>
-                    </div>
-
-                    <button type="submit" class="btn btn-primary">Update Password</button>
-                </form>
-
-                <hr class="my-4">
-            @endif
-
-            <!-- Two-Factor Authentication -->
-            @if (Laravel\Fortify\Features::canManageTwoFactorAuthentication())
-                <form method="POST" action="{{ url('user/two-factor-authentication') }}">
-                    @csrf
-                    @if (Auth::user()->two_factor_secret)
-                        @method('DELETE')
-                        <button type="submit" class="btn btn-danger">Disable Two-Factor</button>
-                    @else
-                        <button type="submit" class="btn btn-primary">Enable Two-Factor</button>
-                    @endif
-                </form>
-
-                <hr class="my-4">
-            @endif
-
-            <!-- Logout Other Browser Sessions -->
-            <form method="POST" action="{{ route('other-browser-sessions.logout') }}">
-                @csrf
-                <button type="submit" class="btn btn-warning">Logout Other Browser Sessions</button>
-            </form>
-
-            <hr class="my-4">
-
-            <!-- Delete User -->
-            @if (Laravel\Jetstream\Jetstream::hasAccountDeletionFeatures())
-                <form method="POST" action="{{ route('current-user.destroy') }}">
-                    @csrf
-                    @method('DELETE')
-
-                    <div class="form-group">
-                        <label for="password">Password</label>
-                        <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required>
-                        @error('password')
-                            <span class="invalid-feedback" role="alert"><strong>{{ $message }}</strong></span>
-                        @enderror
-                    </div>
-
-                    <button type="submit" class="btn btn-danger">Delete Account</button>
-                </form>
-            @endif
+                </div>
+            </div>
         </div>
     </div>
 </div>

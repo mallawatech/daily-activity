@@ -1,11 +1,12 @@
 <?php
 
+use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdminController;
 use App\Http\Controllers\ReportController;
+use App\Http\Controllers\ProfileController;
 use App\Http\Controllers\OvertimeController;
 use App\Http\Controllers\DashboardController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\AdminController;
 use App\Http\Controllers\AdminReportsController;
 
 Route::get('/', function () {
@@ -20,6 +21,13 @@ Route::middleware([
     Route::get('/dashboard', [DashboardController::class, 'index']
     )->name('dashboard');
 });
+
+Route::post('/logout-other-browser-sessions', function (Request $request) {
+    // Pastikan Anda mengatur ini agar dapat menghapus sesi lain
+    $request->user()->currentAccessToken()->delete();
+
+    return back()->with('status', 'Other browser sessions logged out.');
+})->name('other-browser-sessions.logout');
 
 // Route::middleware(['auth:sanctum', 'verified'])->get('/profile', [ProfileController::class, 'show'])->name('profile.show');
 
@@ -61,5 +69,12 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::get('/dashboard/admin.report', [DashboardController::class, 'pdfReport'])->name('admin.report');
 Route::get('/dashboard/admin.overime', [DashboardController::class, 'pdfOvertimeReport'])->name('admin.overtime');
 Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('admin.search');
+
+//route profile
+Route::get('/profile', [ProfileController::class, 'show'])->name('profile.show');
+Route::post('/profile/update', [ProfileController::class, 'update'])->name('profile.update');
+Route::post('/profile/update-password', [ProfileController::class, 'updatePassword'])->name('profile.update.password');
+
+
 
 
