@@ -77,7 +77,7 @@
             <img src="{{ asset('img-logo/Logo.png') }}" alt="Logo" class="landing-image">
         </div>
         <div class="subtitle" >
-           <h1>Aplikasi Untuk Laporan Harian</h1>
+           <h1>DaiRe-Apps</h1>
         </div>
     </div>
 </div>
