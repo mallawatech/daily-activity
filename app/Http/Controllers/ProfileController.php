@@ -42,8 +42,8 @@ class ProfileController extends Controller
     //     return redirect()->route('profile.show')->with('success', 'Profile updated successfully.');
     // }
     
-    // public function updatePassword(Request $request)
-    // {
+    public function updatePassword(Request $request)
+    {
     //     // Validasi input
     //     $request->validate([
     //         'password' => 'required|string|min:8|confirmed',
@@ -61,4 +61,5 @@ class ProfileController extends Controller
     //     // Redirect kembali ke halaman profile dengan pesan sukses
     //     return redirect()->route('profile.show')->with('success', 'Password updated successfully.');
     // }
+    }
 }
