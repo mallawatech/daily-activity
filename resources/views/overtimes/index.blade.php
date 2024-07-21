@@ -45,7 +45,7 @@
                                 <td>
                                     @if($overtime->photos)
                                         @php
-                                            $photos = json_decode($overtime->photos, true);
+                                            $photos = is_string($overtime->photos) ? json_decode($overtime->photos, true) : $overtime->photos;
                                         @endphp
                                         @if(is_array($photos) && count($photos) > 0)
                                             <div class="row">
@@ -62,6 +62,7 @@
                                         <p>No photos uploaded.</p>
                                     @endif
                                 </td>
+                                
                                 <td class="text-center">
                                     <button type="button" class="btn-circle btn-warning btn-sm" data-toggle="modal" data-target="#editOvertimeModal-{{ $overtime->id }}">
                                         <i class="fas fa-edit"></i>
@@ -108,9 +109,9 @@
                                                 <div class="form-group">
                                                     <label for="photos-{{ $overtime->id }}">Photos</label>
                                                     <input type="file" class="form-control-file" id="photos-{{ $overtime->id }}" name="photos[]" multiple>
-                                                    @php
-                                                        $photos = json_decode($overtime->photos, true);
-                                                    @endphp
+                                                    @ @php
+                                                    $photos = is_string($overtime->photos) ? json_decode($overtime->photos, true) : $overtime->photos;
+                                                @endphp
                                                     @if(is_array($photos) && count($photos) > 0)
                                                         <div class="row mt-2">
                                                             @foreach($photos as $photo)
