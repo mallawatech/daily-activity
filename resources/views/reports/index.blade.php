@@ -6,9 +6,9 @@
             {{ session('success') }}
         </div>
     @endif
-    <div class="card">
-        <div class="card-header">
-            <h4>Reports</h4>
+    <div class="card shadow mb-4">
+        <div class="card-header py-3"">
+            <h5 class="m-0 font-weight-bold text-primary">Report Table</h5>
         </div>
         
         <div class="card-body">
@@ -19,7 +19,7 @@
                 <p>Silahkan Upload Data Anda Terlebi Dahulu</p>
             @else
                 <div class="table-responsive">
-                    <table class="table table-bordered">
+                    <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                         <thead>
                             <tr>
                                 <th class="text-center">Date</th>
@@ -53,11 +53,11 @@
                                         @endif
                                     </td>
                                     <td class="text-center">
-                                        <button type="button" class="btn-circle btn-warning btn-sm" data-toggle="modal" data-target="#editModal-{{ $report->id }}">
-                                            <i class="fas fa-edit"></i>
-                                        </button>
                                         <button type="button" class="btn-circle btn-info btn-sm" data-toggle="modal" data-target="#detailModal-{{ $report->id }}">
                                             <i class="fas fa-eye"></i>
+                                        </button>
+                                        <button type="button" class="btn-circle btn-warning btn-sm" data-toggle="modal" data-target="#editModal-{{ $report->id }}">
+                                            <i class="fas fa-edit"></i>
                                         </button>
                                         <form id="deleteForm-{{ $report->id }}" action="{{ route('reports.destroy', $report->id) }}" method="POST" style="display:inline;">
                                             @csrf

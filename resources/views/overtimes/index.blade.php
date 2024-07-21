@@ -11,16 +11,16 @@
         {{ session('failed') }}
     </div>
 @endif
-<div class="card">
-    <div class="card-header">
-        <h4>Overtime</h4>
+<div class="card shadow mb-4">
+    <div class="card-header py-3">
+        <h5 class="m-0 font-weight-bold text-primary">Overtime</h5>
     </div>
     <div class="card-body">
         @if($overtimes->isEmpty())
             <p>You have not submitted any overtime yet.</p>
         @else
             <div class="table-responsive">
-                <table class="table table-bordered" width="100%" cellspacing="0">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
                     <thead>
                         <tr>
                             <th class="text-center">Date</th>
@@ -57,11 +57,11 @@
                                     @endif
                                 </td>
                                 <td class="text-center">
-                                    <button type="button" class="btn-circle btn-warning btn-sm" data-toggle="modal" data-target="#editOvertimeModal-{{ $overtime->id }}">
-                                        <i class="fas fa-edit"></i>
-                                    </button>
                                     <button type="button" class="btn-circle btn-info btn-sm" data-toggle="modal" data-target="#detailOvertimeModal-{{ $overtime->id }}">
                                         <i class="fas fa-eye"></i>
+                                    </button>
+                                    <button type="button" class="btn-circle btn-warning btn-sm" data-toggle="modal" data-target="#editOvertimeModal-{{ $overtime->id }}">
+                                        <i class="fas fa-edit"></i>
                                     </button>
                                     <form id="deleteForm-{{ $overtime->id }}" action="{{ route('overtimes.destroy', $overtime->id) }}" method="POST" style="display:inline;">
                                         @csrf
@@ -164,7 +164,7 @@
                                             </div>
                                         </div>
                                         <div class="modal-footer">
-                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                            <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
                                         </div>
                                     </div>
                                 </div>

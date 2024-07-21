@@ -177,7 +177,7 @@
                                         <div class="row">
                                             @foreach(json_decode($report->photo, true) as $photo)
                                                 <div class="col-md-4 mb-3">
-                                                    <img src="{{ asset('storage/' . $photo) }}" alt="photo" class="img-fluid rounded">
+                                                    <img src="{{ asset('storage/' . $photo) }}" alt="photo" class="img-fluid">
                                                 </div>
                                             @endforeach
                                         </div>
@@ -297,7 +297,7 @@
                                                                 <div class="row">
                                                                     @foreach($photos as $photo)
                                                                         <div class="col-md-4 mb-3">
-                                                                            <img src="{{ asset('storage/' . $photo) }}" alt="photo" class="img-fluid rounded">
+                                                                            <img src="{{ asset('storage/' . $photo) }}" alt="photo" class="img-fluid">
                                                                         </div>
                                                                     @endforeach
                                                                 </div>

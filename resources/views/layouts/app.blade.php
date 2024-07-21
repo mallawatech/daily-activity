@@ -32,10 +32,22 @@
                 <!-- /.container-fluid -->
             </div>
             <!-- End of Main Content -->
+            <!-- Footer -->
+            <footer class="sticky-footer bg-white">
+                <div class="container my-auto">
+                    <div class="copyright text-center my-auto">
+                        <?php
+                        echo '<span>Engineer On Site <i class="fas fa-heart" style="color:red"></i> DaiRe-Apps ' . date("Y") . '</span>';
+                        ?>                        
+                    </div>
+                </div>
+            </footer>
+            <!-- End of Footer -->
         </div>
         <!-- End of Content Wrapper -->
     </div>
     <!-- End of Page Wrapper -->
+    
 
     <!-- Include SBAdmin2 JS -->
     <script src="{{ asset('sbadmin2/vendor/jquery/jquery.min.js') }}"></script>
