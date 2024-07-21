@@ -38,10 +38,10 @@
                                     <td class="text-center">{{ $report->start_time }}</td>
                                     <td class="text-center">{{ $report->end_time }}</td>
                                     <td>{{ $report->activity_log }}</td>
-                                    <td>
-                                        @foreach(json_decode($report->photo, true) as $photo)
-                                            <img src="{{ asset('storage/' . $photo) }}" alt="photo" width="100" height="100">
-                                        @endforeach
+                                    <td class="text-center">
+                                        @if($photos = json_decode($report->photo, true))
+                                            <img src="{{ asset('storage/' . $photos[0]) }}" alt="photo" width="100" height="100">
+                                        @endif
                                     </td>
                                     <td class="text-center">
                                         @if ($report->dataovertime)
@@ -56,6 +56,9 @@
                                         <button type="button" class="btn-circle btn-warning btn-sm" data-toggle="modal" data-target="#editModal-{{ $report->id }}">
                                             <i class="fas fa-edit"></i>
                                         </button>
+                                        <button type="button" class="btn-circle btn-info btn-sm" data-toggle="modal" data-target="#detailModal-{{ $report->id }}">
+                                            <i class="fas fa-eye"></i>
+                                        </button>
                                         <form id="deleteForm-{{ $report->id }}" action="{{ route('reports.destroy', $report->id) }}" method="POST" style="display:inline;">
                                             @csrf
                                             @method('DELETE')
@@ -66,7 +69,41 @@
                                     </td>
                                 </tr>
 
-                                <!-- Edit Modal -->
+                                <!-- Detail Modal Report-->
+                                <div class="modal fade" id="detailModal-{{ $report->id }}" tabindex="-1" aria-labelledby="detailModalLabel-{{ $report->id }}" aria-hidden="true">
+                                    <div class="modal-dialog modal-lg" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="detailModalLabel-{{ $report->id }}">Detail Report</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <div class="row">
+                                                    <div class="col-md-6">
+                                                        <p><strong>Date:</strong> {{ \Carbon\Carbon::parse($report->date)->format('Y-m-d') }}</p>
+                                                        <p><strong>Start Time:</strong> {{ $report->start_time }}</p>
+                                                        <p><strong>End Time:</strong> {{ $report->end_time }}</p>
+                                                        <p><strong>Activity Log:</strong> {{ $report->activity_log }}</p>
+                                                    </div>
+                                                    <div class="col-md-6">
+                                                        <p><strong>Photos:</strong></p>
+                                                        @foreach(json_decode($report->photo, true) as $photo)
+                                                            <img src="{{ asset('storage/' . $photo) }}" alt="photo" width="150" height="150" class="mb-2">
+                                                        @endforeach
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+
+                                <!-- Edit Modal Report -->
                                 <div class="modal fade" id="editModal-{{ $report->id }}" tabindex="-1" aria-labelledby="editModalLabel-{{ $report->id }}" aria-hidden="true">
                                     <div class="modal-dialog" role="document">
                                         <div class="modal-content">
@@ -162,8 +199,7 @@
         </div>
     </div>
     
-   
-    <!-- Create Modal -->
+    <!-- Create Modal Report -->
     <div class="modal fade" id="createReportModal" tabindex="-1" role="dialog" aria-labelledby="createReportModalLabel" aria-hidden="true">
         <div class="modal-dialog" role="document">
             <div class="modal-content">
