@@ -88,9 +88,9 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
-                                                <form action="{{ route('overtimes.update', $overtime->id) }}" method="POST" enctype="multipart/form-data">
+                                                <form id="editForm-{{ $overtime->id }}" action="{{ route('overtimes.update', $overtime->id) }}" method="POST" enctype="multipart/form-data">
                                                     @csrf
-                                                    @method('PUT')
+                                                    @method('POST')
                                                     <div class="form-group">
                                                         <label for="date-{{ $overtime->id }}">Date</label>
                                                         <input type="date" class="form-control" id="date-{{ $overtime->id }}" name="date" value="{{ $overtime->date }}" required>
