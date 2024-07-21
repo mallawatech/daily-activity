@@ -109,9 +109,9 @@
                                                 <div class="form-group">
                                                     <label for="photos-{{ $overtime->id }}">Photos</label>
                                                     <input type="file" class="form-control-file" id="photos-{{ $overtime->id }}" name="photos[]" multiple>
-                                                    @ @php
+                                                    @php
                                                     $photos = is_string($overtime->photos) ? json_decode($overtime->photos, true) : $overtime->photos;
-                                                @endphp
+                                                    @endphp
                                                     @if(is_array($photos) && count($photos) > 0)
                                                         <div class="row mt-2">
                                                             @foreach($photos as $photo)
