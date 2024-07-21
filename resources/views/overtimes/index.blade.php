@@ -76,7 +76,6 @@
                                 </td>
                             </tr>
 
-                            <!-- Edit Overtime Modal -->
                             <div class="modal fade" id="editOvertimeModal-{{ $overtime->id }}" tabindex="-1" aria-labelledby="editOvertimeModalLabel-{{ $overtime->id }}" aria-hidden="true">
                                 <div class="modal-dialog">
                                     <div class="modal-content">
