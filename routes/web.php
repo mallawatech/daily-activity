@@ -61,7 +61,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::post('/overtimes', [OvertimeController::class, 'store'])->name('overtimes.store');
     Route::get('/overtimes/{overtime}', [OvertimeController::class, 'show'])->name('overtimes.show');
     Route::get('/overtimes/{overtime}/edit', [OvertimeController::class, 'edit'])->name('overtimes.edit');
-    Route::post('/overtimes/update/{overtime}', [OvertimeController::class, 'update'])->name('overtimes.update');
+    Route::put('/overtimes/{overtime}', [OvertimeController::class, 'update'])->name('overtimes.update');
     Route::delete('/overtimes/delete/{overtime}', [OvertimeController::class, 'destroy'])->name('overtimes.destroy');
 });
 
