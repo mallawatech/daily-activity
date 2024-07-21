@@ -116,26 +116,27 @@ class OvertimeController extends Controller
     }
 
     public function update(Request $request, $id)
-    {
-        // Validasi input
-        $request->validate([
-            'report_id' => 'required',
-            'date' => 'required|date',
-            'start_time' => 'required|date_format:H:i',
-            'end_time' => 'required|date_format:H:i',
-            'activity_log' => 'required|string',
-            'photos' => 'nullable|array|min:1|max:10',
-            'photos.*' => 'image|mimes:jpeg,png,jpg',
-        ]);
+{
+    // Validasi input
+    $request->validate([
+        'report_id' => 'required',
+        'date' => 'required|date',
+        'start_time' => 'nullable|date_format:H:i',
+        'end_time' => 'nullable|date_format:H:i',
+        'activity_log' => 'nullable|string',
+        'photos' => 'nullable|array|min:1|max:10',
+        'photos.*' => 'image|mimes:jpeg,png,jpg',
+    ]);
 
-        // Temukan instance Overtime berdasarkan ID
-        $overtime = Overtime::find($id);
-        if (!$overtime) {
-            Log::error('Overtime record not found: ' . $id);
-            return redirect()->route('overtimes.index')->with('error', 'Overtime record not found.');
-        }
+    // Temukan instance Overtime berdasarkan ID
+    $overtime = Overtime::find($id);
+    if (!$overtime) {
+        Log::error('Overtime record not found: ' . $id);
+        return redirect()->route('overtimes.index')->with('error', 'Overtime record not found.');
+    }
 
-        // Parsing waktu mulai dan waktu selesai
+    // Parsing waktu mulai dan waktu selesai jika ada perubahan
+    if ($request->has('start_time') || $request->has('end_time')) {
         $start = Carbon::parse($request->date . ' ' . $request->start_time);
         $end = Carbon::parse($request->date . ' ' . $request->end_time);
 
@@ -173,44 +174,58 @@ class OvertimeController extends Controller
         // Log untuk debug hasil total overtime
         Log::info('Total Overtime: ' . $totalOvertime);
 
-        // Mengatur properti-properti dari instance Overtime sesuai dengan input
+        // Mengatur total overtime hanya jika waktu mulai dan waktu selesai diubah
+        $overtime->total_overtime = $totalOvertime;
+    }
+
+    // Update field yang diubah
+    if ($request->has('date')) {
         $overtime->date = $request->date;
         $overtime->day = Carbon::parse($request->date)->format('l');
-        $overtime->start_time = $request->start_time;
-        $overtime->end_time = $request->end_time;
-        $overtime->activity_log = $request->activity_log;
-        $overtime->total_overtime = $totalOvertime; // Mengisi total overtime
-        $overtime->report_id = $request->report_id;
-
-        // Jika ada foto yang diunggah, simpan foto-foto tersebut
-        if ($request->has('photos')) {
-            // Hapus foto lama jika ada
-            if ($overtime->photos) {
-                $oldPhotos = is_string($overtime->photos) ? json_decode($overtime->photos) : $overtime->photos;
-                foreach ($oldPhotos as $photo) {
-                    Storage::disk('public')->delete($photo);
-                }
-            }
-
-            $photos = [];
-            foreach ($request->file('photos') as $photo) {
-                $path = $photo->store('photos', 'public');
-                $photos[] = $path;
-            }
-            $overtime->photos = json_encode($photos);
-        }
-
-        // Simpan instance Overtime ke dalam basis data
-        try {
-            $overtime->save();
-            Log::info('Overtime record updated successfully: ' . $overtime);
-        } catch (\Exception $e) {
-            Log::error('Failed to update Overtime record: ' . $e->getMessage());
-        }
-
-        // Redirect ke halaman index dengan pesan sukses
-        return redirect()->route('overtimes.index')->with('success', 'Overtime record updated successfully.');
     }
+    if ($request->has('start_time')) {
+        $overtime->start_time = $request->start_time;
+    }
+    if ($request->has('end_time')) {
+        $overtime->end_time = $request->end_time;
+    }
+    if ($request->has('activity_log')) {
+        $overtime->activity_log = $request->activity_log;
+    }
+    if ($request->has('report_id')) {
+        $overtime->report_id = $request->report_id;
+    }
+
+    // Jika ada foto yang diunggah, simpan foto-foto tersebut
+    if ($request->has('photos')) {
+        // Hapus foto lama jika ada
+        if ($overtime->photos) {
+            $oldPhotos = is_string($overtime->photos) ? json_decode($overtime->photos) : $overtime->photos;
+            foreach ($oldPhotos as $photo) {
+                Storage::disk('public')->delete($photo);
+            }
+        }
+
+        $photos = [];
+        foreach ($request->file('photos') as $photo) {
+            $path = $photo->store('photos', 'public');
+            $photos[] = $path;
+        }
+        $overtime->photos = json_encode($photos);
+    }
+
+    // Simpan instance Overtime ke dalam basis data
+    try {
+        $overtime->save();
+        Log::info('Overtime record updated successfully: ' . $overtime);
+    } catch (\Exception $e) {
+        Log::error('Failed to update Overtime record: ' . $e->getMessage());
+    }
+
+    // Redirect ke halaman index dengan pesan sukses
+    return redirect()->route('overtimes.index')->with('success', 'Overtime record updated successfully.');
+}
+
 
     public function destroy($id)
     {
