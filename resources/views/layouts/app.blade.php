@@ -37,7 +37,7 @@
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <?php
-                        echo '<span>Engineer On Site <i class="fas fa-heart" style="color:red"></i> DaiRe-Apps ' . date("Y") . '</span>';
+                        echo '<span>Engineer On Site <i class="fas fa-heart" style="color:red"></i> DaiRe-Apps ' . date("Y") . ' V-1.0 </span>';
                         ?>                        
                     </div>
                 </div>
