@@ -45,15 +45,6 @@ Laravel is accessible, powerful, and provides tools required for large, robust a
 9. jalankan server
    * $ php artisan serv
 
-# Screenshoot
-![Screenshot_1](https://github.com/user-attachments/assets/7f4522af-b1f6-4b2e-87b0-1fe9170f39c0)
-![Screenshot_2](https://github.com/user-attachments/assets/c049cab0-d052-4091-ab8b-aa3760c4b370)
-![Screenshot_3](https://github.com/user-attachments/assets/c48f99c8-cf89-4d15-b2ab-a87b91d49d22)
-![Screenshot_4](https://github.com/user-attachments/assets/472f171a-e7da-4b25-bbf7-e2c6560352ea)
-![Screenshot_6](https://github.com/user-attachments/assets/066230bb-94f3-45e1-a948-9b76f00c0a7f)
-![Screenshot_7](https://github.com/user-attachments/assets/144ec4c8-5e0e-4a0a-b2ae-7ba02409b163)
-
-
 ## Learning Laravel
 
 Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework.
