@@ -51,7 +51,6 @@
                     <th class="text-center">Satker</th>
                     <th class="text-center">Kode EOS</th>
                     <th class="text-center">Periode</th>
-                    <td class="text-center">{{ \Carbon\Carbon::parse($overtimes->first()->date)->format('F Y') }}</td>
                 </tr>
             </thead>
             <tbody>
@@ -60,6 +59,7 @@
                         <td class="text-center">{{ $overtimes->first()->user->name }}</td>
                         <td class="text-center">{{ $overtimes->first()->user->satker }}</td>
                         <td class="text-center">{{ $overtimes->first()->user->kode_eos }}</td>
+                        <td class="text-center">{{ \Carbon\Carbon::parse($overtimes->first()->date)->format('F Y') }}</td>
                     </tr>
                 @else
                     <tr>
