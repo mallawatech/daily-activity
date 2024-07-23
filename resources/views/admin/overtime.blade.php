@@ -61,7 +61,7 @@
                 </tr>
             @else
                 <tr>
-                    <td colspan="3" class="text-center">REPORT</td>
+                    <td colspan="3" class="text-center">OVERTIME</td>
                 </tr>
             @endif
         </tbody>
