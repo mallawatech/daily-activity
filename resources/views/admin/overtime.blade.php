@@ -50,6 +50,8 @@
                     <th class="text-center">Nama</th>
                     <th class="text-center">Satker</th>
                     <th class="text-center">Kode EOS</th>
+                    <th class="text-center">Periode</th>
+                    <td class="text-center">{{ \Carbon\Carbon::parse($overtimes->first()->date)->format('F Y') }}</td>
                 </tr>
             </thead>
             <tbody>
