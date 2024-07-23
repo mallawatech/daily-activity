@@ -67,7 +67,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
 //Route::get('dashboard/pdf', [DashboardController::class, 'pdfReport'])->name('dashboard.pdf');
 Route::get('/dashboard/admin.report', [DashboardController::class, 'pdfReport'])->name('admin.report');
-Route::get('/dashboard/admin.overime', [DashboardController::class, 'pdfOvertimeReport'])->name('admin.overtime');
+Route::get('/dashboard/admin.overtime', [DashboardController::class, 'pdfOvertimeReport'])->name('admin.overtime');
 Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('admin.search');
 
 //route profile
