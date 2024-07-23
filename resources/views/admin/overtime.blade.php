@@ -43,6 +43,30 @@
         }
     </style>
 </head>
+<div class="table-responsive">
+    <table class="table table-bordered" width="100%" cellspacing="0">
+        <thead>
+            <tr>
+                <th class="text-center">Nama</th>
+                <th class="text-center">Satker</th>
+                <th class="text-center">Kode EOS</th>
+            </tr>
+        </thead>
+        <tbody>
+            @if($overtimes->isNotEmpty())
+                <tr>
+                    <td class="text-center">{{ $overtimes->first()->user->name }}</td>
+                    <td class="text-center">{{ $overtimes->first()->user->satker }}</td>
+                    <td class="text-center">{{ $overtimes->first()->user->kode_eos }}</td>
+                </tr>
+            @else
+                <tr>
+                    <td colspan="3" class="text-center">REPORT</td>
+                </tr>
+            @endif
+        </tbody>
+    </table>
+</div>
 <body>
     <div class="card-body">
         <div class="table-responsive" style="overflow-x: auto;">
