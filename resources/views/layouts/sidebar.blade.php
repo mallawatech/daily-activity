@@ -91,8 +91,8 @@
             <div class="bg-white py-2 collapse-inner rounded">
                 <h6 class="collapse-header">Login Screens:</h6>
                 <a class="collapse-item" href="{{ route('profile.show') }}">Profile</a>
-                <a class="collapse-item" href="#">Forgot Password</a>
-                <a class="collapse-item" href="{{ route('logout') }}">Logout</a>
+                {{-- <a class="collapse-item" href="#">Forgot Password</a> --}}
+                {{-- <a class="collapse-item" href="{{ route('logout') }}">Logout</a> --}}
                 <div class="collapse-divider"></div>
                 {{-- <h6 class="collapse-header">Other Pages:</h6>
                 <a class="collapse-item" href="#">404 Page</a>
