@@ -62,7 +62,7 @@
         <table class="table table-bordered" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                    {{-- <th class="text-center">Nama</th> --}}
+                    <th class="text-center">Nama</th>
                     <th class="text-center">Satker</th>
                     <th class="text-center">Kode EOS</th>
                     <th class="text-center">Periode</th>
@@ -71,7 +71,7 @@
             <tbody>
                 @if($reports->isNotEmpty())
                     <tr>
-                        {{-- <td class="text-center">{{ $reports->first()->user->name }}</td> --}}
+                        <td class="text-center">{{ $reports->first()->user->name }}</td>
                         <td class="text-center">{{ $reports->first()->user->satker }}</td>
                         <td class="text-center">{{ $reports->first()->user->kode_eos }}</td>
                         <td class="text-center">{{ \Carbon\Carbon::parse($reports->first()->date)->format('F Y') }}</td>
@@ -90,7 +90,7 @@
     <table class="table table-bordered" width="100%" cellspacing="0">
         <thead>
             <tr>
-                <th class="text-center">Name</th>
+                {{-- <th class="text-center">Name</th> --}}
                 <th class="text-center">Date</th>
                 <th class="text-center">Start Time</th>
                 <th class="text-center">End Time</th>
@@ -101,7 +101,7 @@
         <tbody>
             @foreach($reports as $report)
             <tr>
-                <td>{{ $report->user->name }}</td>
+                {{-- <td>{{ $report->user->name }}</td> --}}
                 <td>{{ $report->date }}</td>
                 <td>{{ $report->start_time }}</td>
                 <td>{{ $report->end_time }}</td>
