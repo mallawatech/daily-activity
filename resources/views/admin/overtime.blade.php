@@ -75,7 +75,7 @@
             <table class="table table-bordered" id="dataTableOvertimes" width="100%" cellspacing="0">
                 <thead>
                     <tr>
-                        <th class="text-center">Name</th>
+                        {{-- <th class="text-center">Name</th> --}}
                         <th class="text-center">Date</th>
                         <th class="text-center">Day</th>
                         <th class="text-center">Start Time</th>
@@ -88,7 +88,7 @@
                 <tbody>
                     @foreach($overtimes as $overtime)
                     <tr>
-                        <td>{{ $overtime->user->name }}</td>
+                        {{-- <td>{{ $overtime->user->name }}</td> --}}
                         <td>{{ $overtime->date }}</td>
                         <td>{{ \Carbon\Carbon::parse($overtime->date)->format('l') }}</td>
                         <td>{{ $overtime->start_time }}</td>
