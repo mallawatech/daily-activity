@@ -139,8 +139,9 @@
                         @endforeach
                     </tbody>
                 </table>
-                <p id="notFoundMessage" style="display:none;">Data not found</p>
-                {{ $reports->links() }}
+                <div class="d-flex justify-content-center">
+                    {{ $reports->links() }}
+                </div>
             </div>
         </div>
     </div>
@@ -323,7 +324,9 @@
                         @endforeach
                     </tbody>
                 </table>
-                {{ $overtime->links() }}
+                <div class="d-flex justify-content-center">
+                    {{ $overtimes->links() }}
+                </div>
             </div>
         </div>
     </div>
