@@ -1,20 +1,16 @@
 <?php
 namespace App\Http\Controllers;
 
-use App\Models\Role;
+namespace App\Http\Controllers;
+
 use App\Models\User;
-use App\Models\Report;
-use App\Models\Overtime;
 use Illuminate\Http\Request;
-use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\Auth;
 
 class AdminController extends Controller
 {
-    
-    public function dashboard()
+    public function showUsers()
     {
-        return view('admin.dashboard'); // Pastikan Anda memiliki view 'admin.dashboard'
+        $users = User::all();
+        return view('admin.user', compact('users'));
     }
-
 }
