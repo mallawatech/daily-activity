@@ -23,7 +23,7 @@
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->email }}</td>
                         <td>{{ $user->satker }}</td>
-                        <td>{{ $user->eos_code }}</td>
+                        <td>{{ $user->kode_eos }}</td>
                     </tr>
                     @endforeach
                 </tbody>
