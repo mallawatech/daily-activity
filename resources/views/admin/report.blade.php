@@ -62,7 +62,7 @@
         <table class="table table-bordered" width="100%" cellspacing="0">
             <thead>
                 <tr>
-                    <th class="text-center">Nama</th>
+                    {{-- <th class="text-center">Nama</th> --}}
                     <th class="text-center">Satker</th>
                     <th class="text-center">Kode EOS</th>
                     <th class="text-center">Periode</th>
@@ -71,7 +71,7 @@
             <tbody>
                 @if($reports->isNotEmpty())
                     <tr>
-                        <td class="text-center">{{ $reports->first()->user->name }}</td>
+                        {{-- <td class="text-center">{{ $reports->first()->user->name }}</td> --}}
                         <td class="text-center">{{ $reports->first()->user->satker }}</td>
                         <td class="text-center">{{ $reports->first()->user->kode_eos }}</td>
                         <td class="text-center">{{ \Carbon\Carbon::parse($reports->first()->date)->format('F Y') }}</td>
