@@ -24,8 +24,10 @@ class DashboardController extends Controller
         }
         else if ($user && $user->role == 'admin') // Memeriksa apakah pengguna terautentikasi dan perannya 'admin'
         {
-            $reports = Report::with('user')->get();
-            $overtimes = Overtime::with('user')->get(); // Mengambil data lembur dengan relasi user
+            // Menambahkan pagination
+            $reports = Report::with('user')->paginate(5); // Menambahkan pagination
+            $overtimes = Overtime::with('user')->paginate(5); // Menambahkan pagination
+            
             Log::info('Reports data:', $reports->toArray());
             Log::info('Overtimes data:', $overtimes->toArray());
             return view('admin.dashboard', compact('reports', 'overtimes'));
@@ -73,15 +75,18 @@ class DashboardController extends Controller
     public function search(Request $request)
     {
         $search = $request->input('search');
+        
+        // Menambahkan pagination
         $reports = Report::whereHas('user', function ($query) use ($search) {
             $query->where('name', 'like', '%' . $search . '%');
-        })->get();
+        })->paginate(5);
 
         $overtimes = Overtime::whereHas('user', function ($query) use ($search) {
             $query->where('name', 'like', '%' . $search . '%');
-        })->get();
+        })->paginate(5);
 
         return view('admin.dashboard', compact('reports', 'overtimes'));
     }
+
 }
 

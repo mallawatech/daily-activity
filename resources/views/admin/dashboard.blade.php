@@ -260,6 +260,8 @@
                                 </form>
                             </td>
                         </tr>
+                        <!-- Pagination Links -->
+                        {{ $overtimes->links() }}
     
                         <!-- Modal -->
                         <div class="modal fade" id="viewOvertimeModal{{ $overtime->id }}" tabindex="-1" role="dialog" aria-labelledby="viewOvertimeModalLabel{{ $overtime->id }}" aria-hidden="true">
