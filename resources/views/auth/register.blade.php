@@ -1,5 +1,5 @@
 <x-guest-layout>
-    <div class="flex items-center justify-center min-h-screen bg-purple-600">
+    <div class="flex items-center justify-center min-h-screen bg-blue-600">
         <div class="bg-white shadow-lg rounded-lg flex w-3/4 max-w-4xl overflow-hidden">
             <!-- Left Side Image -->
             <div class="hidden md:block w-1/2 bg-cover bg-center" style="background-image: url('{{ asset('img-logo/logo.jpg') }}');">
@@ -37,7 +37,7 @@
                         <x-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation" required />
                     </div>
 
-                    <div class="flex items-center justify-between mt-6">
+                    <div class="flex items-center justify-between">
                         <x-button class="ml-4 bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
                             {{ __('Register') }}
                         </x-button>
