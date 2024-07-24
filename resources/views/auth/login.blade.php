@@ -1,8 +1,8 @@
 <x-guest-layout>
-    <div class="flex items-center justify-center min-h-screen bg-purple-600">
+    <div class="flex items-center justify-center min-h-screen bg-blue-600">
         <div class="bg-white shadow-lg rounded-lg flex w-3/4 max-w-4xl overflow-hidden">
             <!-- Left Side Image -->
-            <div class="hidden md:block w-1/2 bg-cover bg-center" style="background-image: {{ asset('img-logo/login.jpg') }};">
+            <div class="hidden md:block w-1/2 bg-cover bg-center" style="background-image: url('{{ asset('img-logo/logo.jpg') }}');">
                 <!-- Add your SVG or image here -->
             </div>
 
@@ -53,7 +53,7 @@
                     </div>
 
                     <div class="mt-6 text-center">
-                        <p class="text-gray-700">Don't have an account? <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Sign up</a></p>
+                        <p class="text-gray-700">Don't have an account? <a href="{{ route('register') }}" class="text-blue-600 hover:underline">Register</a></p>
                     </div>
                 </form>
             </div>
