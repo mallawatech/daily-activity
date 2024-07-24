@@ -195,7 +195,7 @@
                         </tbody>
                     </table>
                     <div class="d-flex justify-content-center mt-4 mb-4">
-                        {{ $report->links() }} <!-- Link pagination -->
+                        {{ $reports->links() }} <!-- Link pagination -->
                     </div>
                 </div>
             @endif
