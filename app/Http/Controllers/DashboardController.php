@@ -24,7 +24,7 @@ class DashboardController extends Controller
         }
         else if ($user && $user->role == 'admin') // Memeriksa apakah pengguna terautentikasi dan perannya 'admin'
         {
-            $reports = Report::with('user')->simplePaginate(5);
+            $reports = Report::with('user')->Paginate(5);
             $overtimes = Overtime::with('user')->simplePaginate(5); // Mengambil data lembur dengan relasi user
             //Log::info('Reports data:', $reports->toArray());
             //Log::info('Overtimes data:', $overtimes->toArray());

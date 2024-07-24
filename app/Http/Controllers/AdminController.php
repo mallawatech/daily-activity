@@ -10,7 +10,7 @@ class AdminController extends Controller
 {
     public function showUsers()
     {
-        $users = User::all();
+        $users = User::paginate(10);
         return view('admin.user', compact('users'));
     }
 
