@@ -9,7 +9,7 @@ class AddUserIdToReportsTable extends Migration
     public function up()
     {
         Schema::table('reports', function (Blueprint $table) {
-            $table->unsignedBigInteger('user_id')->after('id');
+            $table->unsignedBigInteger('user_id')->nullable(); // Bisa nullable jika ada data yang tidak memiliki user_id
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
     }

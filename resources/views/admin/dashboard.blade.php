@@ -327,36 +327,31 @@
     </div>
     
     <!-- End Tabel Overtimes -->
-    
-    
-
-
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.4.0/jspdf.umd.min.js"></script>
     <script>
-        document.getElementById('downloadPdfBtn').addEventListener('click', function() {
-            const doc = new jsPDF();
-    
-            // Contoh konten sederhana
-            const content = `
-                <h2>Report Details</h2>
-                <p><strong>Name:</strong> John Doe</p>
-                <p><strong>Date:</strong> 2024-07-17</p>
-                <p><strong>Start Time:</strong> 08:00:00</p>
-                <p><strong>End Time:</strong> 17:00:00</p>
-                <p><strong>Activity Log:</strong> Lorem ipsum dolor sit amet.</p>
-            `;
-    
-            // Menambahkan konten sebagai HTML ke PDF
-            doc.html(content, {
-                callback: function (doc) {
-                    doc.save('report.pdf'); // Mengunduh PDF
-                },
-                x: 10,
-                y: 10
+        document.addEventListener('DOMContentLoaded', function () {
+            // SweetAlert for delete confirmation
+            document.querySelectorAll('.delete-btn').forEach(button => {
+                button.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    let form = this.closest('form');
+
+                    Swal.fire({
+                        title: 'Are you sure?',
+                        text: "You won't be able to revert this!",
+                        icon: 'warning',
+                        showCancelButton: true,
+                        confirmButtonColor: '#3085d6',
+                        cancelButtonColor: '#d33',
+                        confirmButtonText: 'Yes, delete it!'
+                    }).then((result) => {
+                        if (result.isConfirmed) {
+                            form.submit();
+                        }
+                    })
+                });
             });
         });
-    </script> --}}
-    
+    </script>
 
 @endsection
 

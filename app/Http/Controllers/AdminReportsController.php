@@ -11,13 +11,8 @@ class AdminReportsController extends Controller
 {
     public function dashboard()
     {
-        // Mengambil semua data dari tabel reports beserta relasi user
         $reports = Report::with('user')->get();
-        
-        // Debug: Menampilkan data ke dalam log Laravel
         Log::info('Reports data:', $reports->toArray());
-        
-        // Mengirim data ke view
         return view('admin.dashboard', compact('reports'));
     }
 }

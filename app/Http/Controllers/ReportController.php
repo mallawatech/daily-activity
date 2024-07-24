@@ -27,7 +27,7 @@ class ReportController extends Controller
             'start_time' => 'required',
             'end_time' => 'required',
             'activity_log' => 'required',
-            'photo.*' => 'image|mimes:jpeg,png,jpg',
+            'photo.*' => 'image|required|mimes:jpeg,png,jpg',
         ]);
 
         // Mendapatkan user yang sedang login

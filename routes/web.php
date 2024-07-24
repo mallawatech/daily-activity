@@ -69,7 +69,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 Route::get('/dashboard/admin.report', [DashboardController::class, 'pdfReport'])->name('admin.report');
 Route::get('/dashboard/admin.overtime', [DashboardController::class, 'pdfOvertimeReport'])->name('admin.overtime');
 Route::get('/dashboard/search', [DashboardController::class, 'search'])->name('admin.search');
-Route::get('/admin/users', [AdminController::class, 'showUsers'])->name('admin.users');
+Route::prefix('admin')->name('admin.')->group(function() {
+    Route::get('/users', [AdminController::class, 'showUsers'])->name('users');
+    Route::delete('/users/{id}', [AdminController::class, 'destroy'])->name('users.destroy');
+});
+
 
 //route profile
 Route::middleware('auth')->group(function () {

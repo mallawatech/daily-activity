@@ -8,6 +8,7 @@
     <!-- Include SBAdmin2 CSS -->
     <link href="{{ asset('sbadmin2/vendor/fontawesome-free/css/all.min.css') }}" rel="stylesheet" type="text/css">
     <link href="{{ asset('sbadmin2/css/sb-admin-2.min.css') }}" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     @stack('css')
 </head>
 <body id="page-top">
