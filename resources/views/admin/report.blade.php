@@ -74,7 +74,7 @@
                         <td class="text-center">{{ $reports->first()->user->name }}</td>
                         <td class="text-center">{{ $reports->first()->user->satker }}</td>
                         <td class="text-center">{{ $reports->first()->user->kode_eos }}</td>
-                        <td class="text-center">{{ \Carbon\Carbon::parse($overtimes->first()->date)->format('F Y') }}</td>
+                        <td class="text-center">{{ \Carbon\Carbon::parse($reports->first()->date)->format('F Y') }}</td>
                     </tr>
                 @else
                     <tr>
