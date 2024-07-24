@@ -2,7 +2,7 @@
     <div class="flex items-center justify-center min-h-screen bg-purple-600">
         <div class="bg-white shadow-lg rounded-lg flex w-3/4 max-w-4xl overflow-hidden">
             <!-- Left Side Image -->
-            <div class="hidden md:block w-1/2 bg-cover bg-center" style="background-image: url('/path/to/illustration.svg');">
+            <div class="hidden md:block w-1/2 bg-cover bg-center" style="background-image: {{ asset('img-logo/login.jpg') }};">
                 <!-- Add your SVG or image here -->
             </div>
 
