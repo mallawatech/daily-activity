@@ -140,6 +140,7 @@
                     </tbody>
                 </table>
                 <p id="notFoundMessage" style="display:none;">Data not found</p>
+                {{ $reports->links() }}
             </div>
         </div>
     </div>
@@ -322,6 +323,7 @@
                         @endforeach
                     </tbody>
                 </table>
+                {{ $overtime->links() }}
             </div>
         </div>
     </div>
