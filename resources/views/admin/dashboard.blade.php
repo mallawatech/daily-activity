@@ -332,7 +332,7 @@
     </div>
     
     <!-- End Tabel Overtimes -->
-{{-- <script>
+<script>
         document.addEventListener('DOMContentLoaded', function () {
             // SweetAlert for delete confirmation
             document.querySelectorAll('.delete-btn').forEach(button => {
@@ -356,7 +356,7 @@
                 });
             });
         });
-</script> --}}
+</script>
 
 @endsection
 
