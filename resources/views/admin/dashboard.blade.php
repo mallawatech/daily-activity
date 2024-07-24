@@ -260,8 +260,6 @@
                                 </form>
                             </td>
                         </tr>
-                        <!-- Pagination Links -->
-                        {{ $overtimes->links() }}
     
                         <!-- Modal -->
                         <div class="modal fade" id="viewOvertimeModal{{ $overtime->id }}" tabindex="-1" role="dialog" aria-labelledby="viewOvertimeModalLabel{{ $overtime->id }}" aria-hidden="true">
@@ -329,7 +327,7 @@
     </div>
     
     <!-- End Tabel Overtimes -->
-    <script>
+<script>
         document.addEventListener('DOMContentLoaded', function () {
             // SweetAlert for delete confirmation
             document.querySelectorAll('.delete-btn').forEach(button => {
