@@ -1,11 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
-    <div class="container">
         <div class="card shadow mb-4">
             <div class="card-header py-3 d-flex justify-content-between align-items-center">
                 <h6 class="m-0 font-weight-bold text-primary">User List</h6>
-                <div class="h5 mb-0 font-weight-bold text-primary">Total User : {{ \App\Models\User::count() }}</div>
+                <div class="h5 mb-0 font-weight-bold text-primary">Total User : {{ \App\Models\User::count() }} User</div>
             </div>
             <div class="table-responsive">
                 <table class="table table-bordered">
@@ -40,7 +39,7 @@
                 </table>
             </div>
         </div>
-    </div>
+
 
     <script>
         function confirmDelete(userId) {
