@@ -10,7 +10,7 @@ class ReportController extends Controller
 {
     public function index()
     {
-         $reports = Report::with(['dataovertime'])->where('user_id', Auth::id())->get();
+         $reports = Report::with(['dataovertime'])->where('user_id', Auth::id())->simplePaginate(5);
         return view('reports.index', compact('reports'));
     }
 

@@ -139,7 +139,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center mt-4 mb-4">
                     {{ $reports->links() }}
                 </div>
             </div>
@@ -324,7 +324,7 @@
                         @endforeach
                     </tbody>
                 </table>
-                <div class="d-flex justify-content-center">
+                <div class="d-flex justify-content-center mt-4 mb-4">
                     {{ $overtimes->links() }}
                 </div>
             </div>
