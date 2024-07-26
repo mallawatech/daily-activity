@@ -1,13 +1,8 @@
 <x-guest-layout>
     <div class="flex items-center justify-center min-h-screen bg-blue-600">
-        <div class="bg-white shadow-lg rounded-lg flex w-3/4 max-w-4xl overflow-hidden">
-            <!-- Left Side Image -->
-            <div class="hidden md:block w-1/2 bg-cover bg-center" style="background-image: url('{{ asset('img-logo/login.jpg') }}');">
-                <!-- Image from public/img-logo/logo.jpg -->
-            </div>
-
+        <div class="bg-white shadow-lg rounded-lg flex w-full max-w-md overflow-hidden my-8"> <!-- Added vertical margin -->
             <!-- Right Side Form -->
-            <div class="w-full md:w-1/2 p-8">
+            <div class="w-full p-6"> <!-- Reduced padding -->
                 <div class="flex justify-center mb-6">
                     <img src="{{ asset('img-logo/Logo.png') }}" alt="Logo" class="landing-image" width="150px" height="150px">
                 </div>

@@ -10,7 +10,7 @@ use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\AdminReportsController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
 
 Route::middleware([
