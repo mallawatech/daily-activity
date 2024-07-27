@@ -75,11 +75,11 @@ class DashboardController extends Controller
         $search = $request->input('search');
         $reports = Report::whereHas('user', function ($query) use ($search) {
             $query->where('name', 'like', '%' . $search . '%');
-        })->get();
+        })->simplePaginate(5);
 
         $overtimes = Overtime::whereHas('user', function ($query) use ($search) {
             $query->where('name', 'like', '%' . $search . '%');
-        })->get();
+        })->simplePaginate(5);
 
         return view('admin.dashboard', compact('reports', 'overtimes'));
     }
